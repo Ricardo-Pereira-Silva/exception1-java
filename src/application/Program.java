@@ -25,7 +25,8 @@ public class Program {
 
         if (!dataSaida.after(dataEntrada)) {
 
-            System.out.println("Erro na reserva: Data de saida deve ser depois da Data de entrada");
+            System.out.println("Eita deu Erro na reserva:" +
+                    " Data de saida deve ser depois da Data de entrada");
 
         } else {
 
@@ -40,22 +41,20 @@ public class Program {
             System.out.print("Data de saida: (dd/MM/yyyy): ");
             dataSaida = fmt.parse(sc.next());
 
-            Date agora = new Date();
-            if(dataEntrada.before(agora) || dataSaida.after(agora)) {
+            String erro = reserva.atualizaDados(dataEntrada,dataSaida);
 
-                System.out.println("Erro na reserva: Datas para atualizar reserva devem ser datas futuras.");
+            if(erro != null) {
 
-            }
-            else if (!dataSaida.after(dataEntrada)) {
-
-                System.out.println("Erro na reserva: Data de saida tem que ser depois da data de entrada.");
+                System.out.println("Atenção Erro na reserva: ");
+                System.out.println(erro);
             }
 
             else {
 
-                reserva.atualizaDados(dataEntrada,dataSaida);
                 System.out.println("Reserva atualizada: " +reserva);
+
             }
+
         }
 
         sc.close();
